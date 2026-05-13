@@ -11,7 +11,7 @@ class CadastroProdutoPage {
         descricaoInput: '#productDescription',
 
         botaoSalvar: 'button',
-
+//
         cardProduto: 'h3'
     }
 
