@@ -1,11 +1,13 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from 'cypress'
 
-module.exports = defineConfig({
-  allowCypressEnv: false,
+export default defineConfig({
 
   e2e: {
+
+    baseUrl: 'https://patrick-cst.github.io/cadastro-produtos/',
+
     setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-  },
-});
+      return config
+    }
+  }
+})
