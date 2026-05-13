@@ -5,11 +5,17 @@ on:
     branches:
       - master
 
-jobs:
+  pull_request:
+    branches:
+      - master
 
+jobs:
   cypress-run:
 
     runs-on: ubuntu-latest
+
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
 
@@ -19,13 +25,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: npm
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run Cypress
-        run: npx cypress run
+        uses: cypress-io/github-action@v6
 
       - name: Upload Videos
         uses: actions/upload-artifact@v4
@@ -33,6 +40,7 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos
+          if-no-files-found: ignore
 
       - name: Upload Screenshots
         uses: actions/upload-artifact@v4
@@ -40,3 +48,4 @@ jobs:
         with:
           name: cypress-screenshots
           path: cypress/screenshots
+          if-no-files-found: ignore
