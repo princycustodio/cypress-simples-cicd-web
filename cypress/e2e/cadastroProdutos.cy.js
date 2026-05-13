@@ -1,4 +1,4 @@
-import CadastroProdutoPage from '../pages/CadastroPage'
+import CadastroProdutoPage from '../pages/cadastroPage'
 import { gerarProduto } from '../support/utils'
 
 describe('Cadastro de Produtos', () => {
