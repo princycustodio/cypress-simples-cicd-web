@@ -1,13 +1,29 @@
-import { defineConfig } from 'cypress'
+const { defineConfig } = require("cypress");
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const {
+  addCucumberPreprocessorPlugin,
+} = require("@badeball/cypress-cucumber-preprocessor");
+const {
+  createEsbuildPlugin,
+} = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 
-export default defineConfig({
-
+module.exports = defineConfig({
   e2e: {
+    baseUrl: 'https://www.automationexercise.com',
 
-    baseUrl: 'https://patrick-cst.github.io/cadastro-produtos/',
+    specPattern: "cypress/e2e/features/**/*.feature",
 
-    setupNodeEvents(on, config) {
-      return config
-    }
-  }
-})
+    async setupNodeEvents(on, config) {
+      await addCucumberPreprocessorPlugin(on, config);
+
+      on(
+        "file:preprocessor",
+        createBundler({
+          plugins: [createEsbuildPlugin(config)],
+        })
+      );
+
+      return config;
+    },
+  },
+});
