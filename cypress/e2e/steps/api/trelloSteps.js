@@ -1,4 +1,11 @@
-import { Then } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, Then } from "@badeball/cypress-cucumber-preprocessor";
+
+//
+// SETUP
+//
+Given('que tenho acesso à API do Trello', () => {
+  cy.log('Acessando a API do Trello');
+});
 
 //
 //  CENÁRIO POSITIVO
