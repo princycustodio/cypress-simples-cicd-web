@@ -33,19 +33,3 @@ jobs:
 
       - name: Run Cypress
         uses: cypress-io/github-action@v6
-
-      - name: Upload Videos
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos
-          if-no-files-found: ignore
-
-      - name: Upload Screenshots
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-          if-no-files-found: ignore
